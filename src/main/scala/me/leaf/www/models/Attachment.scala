@@ -2,7 +2,7 @@ package me.leaf.www.models
 
 import play.api.libs.json._
 
-case class Attachment(url: String, image_url: String)
+case class Attachment(image_url: String)
 
 object Attachment {
 

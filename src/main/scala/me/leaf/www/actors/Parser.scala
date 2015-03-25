@@ -4,7 +4,7 @@ import java.text.{SimpleDateFormat, DateFormat}
 import java.util.Locale
 
 import akka.actor.Actor
-import me.leaf.www.models.{Attachment, User, Letter, Resource}
+import me.leaf.www.models._
 import org.joda.time.DateTime
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -56,7 +56,7 @@ class Parser extends Actor {
       userId,
       "",
       comment,
-      rating,
+      Rating(rating),
       user,
       Some(attachments),
       new DateTime(date.getTime),
@@ -83,7 +83,6 @@ class Parser extends Actor {
   def parseAttachments(review: Document) = {
     review.select(".photo-box-grid li").toArray.map{ imgNode =>
       Attachment(
-        "",
         Jsoup.parse(imgNode.toString).select("img").attr("src")
       )
     }.toSeq
